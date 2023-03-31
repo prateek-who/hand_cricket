@@ -167,11 +167,11 @@ class battle extends players {
                 }
             }
             else{
-                System.out.println("Fradulent play detected!");
+                System.out.println("Fradulent play detected!");  //Implements check
             }
         }
         else{
-            System.out.println("Learn to read before playing with me smartass");
+            System.out.println("Learn to read before playing with me smartass"); // Can't leave else part as legal condition
         }
 
         if (p1_tot > p2_tot) {
@@ -185,6 +185,7 @@ class battle extends players {
         else {
             System.out.println("Tie game! We should have a rematch!");
             System.out.println(player1 + "'s score: " + p1_tot + "\t||\t" + player2 + "'s score: " + p2_tot);
+            //Any kind of misplay results in tie, might need changes later
         }
     }
 }
