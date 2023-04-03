@@ -30,7 +30,6 @@ class players
             System.out.println(player1+" played : " + p1_num);
             p2_num = rn.nextInt(1, 11);
             System.out.println(player2+" played: " + p2_num);
-            System.out.println("------------------");
         }
 
         else{
@@ -45,29 +44,36 @@ class battle extends players {
     public void mech_bat(){
         System.out.println(player1 + "'s turn to bat:");
         do {
+            System.out.println(player1+"'s current Score: "+p1_tot);
             play();
+            System.out.println("------------------");
             if (p1_num == p2_num) {
                 System.out.println("You are out!");
             }
-            else {
+            else if(p1_num<=10 && p1_num>0){
                 p1_tot = p1_tot + p1_num;
             }
+            /*Finally fixed "numbers more than 10 counting towards total" error by changing
+              'else' to an 'else if' statement - (Fix 1.0)*/
         } while (p1_num != p2_num);
 
         System.out.println(player1 + "'s final score: " + p1_tot);
 
         System.out.println(player2 + "'s turn:");
         do {
+            System.out.println(player2+"'s current Score: "+p2_tot);
             play();
+            System.out.println("------------------");
             if (p1_num == p2_num) {
                 System.out.println("Computer is out!");
             }
-            else {
+            else{
                 p2_tot = p2_tot + p2_num;
                 if (p2_tot > p1_tot) {
                     break;
                 }
             }
+            //p2 deosn't need check because computer will always play fair(petrosian reference hehehe)!
         } while (p1_num != p2_num);
 
         System.out.println(player2 + "'s final score: " + p2_tot);
@@ -76,7 +82,9 @@ class battle extends players {
     public void mech_ball(){
         System.out.println(player2 + "'s turn to bat:");
         do {
+            System.out.println(player2+"'s current Score: "+p2_tot);
             play();
+            System.out.println("------------------");
             if (p2_num == p1_num) {
                 System.out.println("Computer is out!");
             }
@@ -89,16 +97,19 @@ class battle extends players {
 
         System.out.println(player1 + "'s turn:");
         do {
+            System.out.println(player1+"'s current Score: "+p1_tot);
             play();
+            System.out.println("------------------");
             if (p2_num == p1_num) {
                 System.out.println("You are out!");
             }
-            else {
+            else if(p1_num<=10 && p1_num>0){
                 p1_tot = p1_tot + p1_num;
                 if (p1_tot > p2_tot) {
                     break;
                 }
             }
+            //(Fix 1.0) applies here aswell. Hopefully this is fixed!
         } while (p2_num != p1_num);
 
         System.out.println(player1 + "'s final score: " + p1_tot);
@@ -123,7 +134,8 @@ class battle extends players {
                         case 2 -> mech_ball();
                         default -> System.out.println("Wrong choice, how can somebody be so dumb?");
                     }
-                } else {
+                }
+                else {
                     System.out.println("Toss = " + toss + ",you lose");
                     choice = rn.nextInt(1, 3);
                     System.out.println(player2 + " chooses \n1.Bat\n2.Ball\n" + choice);
@@ -154,7 +166,8 @@ class battle extends players {
                         case 2 -> mech_ball();
                         default -> System.out.println("Wrong choice, how can somebody be so dumb?");
                     }
-                } else {
+                }
+                else {
                     System.out.println("Toss = " + toss + ",you lose");
                     choice = rn.nextInt(1, 3);
                     System.out.println(player2 + " chooses \n1.Bat\n2.Ball\n" + choice);
@@ -167,11 +180,12 @@ class battle extends players {
                 }
             }
             else{
-                System.out.println("Fradulent play detected!");  //Implements check
+                System.out.println("Fradulent play detected!");
             }
         }
         else{
-            System.out.println("Learn to read before playing with me smartass"); // Can't leave else part as legal condition
+            System.out.println("Learn to read before playing with me smartass");
+            // Can't leave else part as legal condition
         }
 
         if (p1_tot > p2_tot) {
